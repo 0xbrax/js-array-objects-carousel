@@ -39,16 +39,16 @@ items.innerHTML = `
             <p>${img[0].description}</p>
         </div>
     </div>
-    `;
+`;
 for (let i = 1; i < img.length; i++) {
     items.innerHTML += `
-    <div class="item-img">
-        <img class="main-img" src="${img[i].url}">
-        <div class="item-txt">
-            <h2>${img[i].title}</h2>
-            <p>${img[i].description}</p>
+        <div class="item-img">
+            <img class="main-img" src="${img[i].url}">
+            <div class="item-txt">
+                <h2>${img[i].title}</h2>
+                <p>${img[i].description}</p>
+            </div>
         </div>
-    </div>
     `;
 }
 
@@ -59,18 +59,15 @@ for (let i = 1; i < img.length; i++) {
 
 thumb.innerHTML += `<div id="arrow-left"><i class="fa-solid fa-circle-chevron-left"></i></div>`;
 thumb.innerHTML += `<div id="arrow-right"><i class="fa-solid fa-circle-chevron-right"></i></div>`;
-
 items.innerHTML += `
     <div id="autoplay-container">
         <i id="reverse-btn" class="fa-solid fa-circle-play"></i>
         <i id="pause-btn" class="fa-solid fa-circle-pause"></i>
         <i id="play-btn" class="fa-solid fa-circle-play"></i>
     </div>
-    `;
-items.innerHTML += `<div id="play-btn"><i class="fa-solid fa-circle-play"></i></div>`;
-items.innerHTML += `<div id="pause-btn"><i class="fa-solid fa-circle-play"></i></div>`;
+`;
 
-console.log(`INFO: Possibilità di cliccare sui singoli thumb e scorrimento infinito attraverso le frecce della tastiera o cliccando sui bottoni.`)
+console.log(`INFO: Possibilità di cliccare sui singoli thumb e scorrimento infinito attraverso le frecce della tastiera o cliccando sui bottoni, autoplay disattivabile.`)
 
 
 
@@ -80,11 +77,7 @@ let imgMain = document.querySelectorAll('.item-img');
 let imgSec = document.querySelectorAll('.sec-img');
 const imgThumb = document.getElementsByClassName('sec-img');
 
-///////////////////////////////// CHECK THIS ********
-let imgSelected = [0, 1, 2, 3, 4];
-for (let i = 0; i < imgSelected.length; i++) {
-    imgSelected = i;
-}
+let imgSelected = 0;
 
 for (let n = 0; n < imgThumb.length; n++) {
     imgThumb[n].addEventListener('click', 
@@ -131,16 +124,43 @@ function(event) {
 
 
 
+let reverseBtn = document.getElementById('reverse-btn');
+let pauseBtn = document.getElementById('pause-btn');
+let playBtn = document.getElementById('play-btn')
 let autoplay = undefined;
 
 if (autoplay == undefined) {
     autoplay = setInterval(function() {
         keybtnRight();
-    
-        autoplay = undefined;
     }, 3000);
 }
 
+playBtn.addEventListener('click', function() {
+    clearInterval(autoplay);
+    autoplay = undefined;
+
+    if (autoplay == undefined) {
+        autoplay = setInterval(function() {
+            keybtnRight();
+        }, 3000);
+    }    
+});
+
+pauseBtn.addEventListener('click', function() {
+    clearInterval(autoplay);
+    autoplay = undefined;
+});
+
+reverseBtn.addEventListener('click', function() {
+    clearInterval(autoplay);
+    autoplay = undefined;
+
+    if (autoplay == undefined) {
+        autoplay = setInterval(function() {
+            keybtnLeft();
+        }, 3000);
+    }    
+});
 
 
 

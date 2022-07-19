@@ -27,6 +27,8 @@ main {
     transform: translate(-50%, -50%);
     width: 800px;
     height: 500px;
+    outline: 20px solid black;
+    outline-offset: 0px;
 }
 
 .items {
