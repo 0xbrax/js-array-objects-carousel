@@ -1,13 +1,3 @@
-/*
-const img = [
-    'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg', 
-    'https://static1.evcdn.net/images/reduction/1513757_w-1920_h-1080_q-70_m-crop.jpg', 
-    'https://img.itinari.com/pages/images/original/0d3ed180-d22d-48e8-84df-19c4d888b41f-62-crop.jpg?ch=DPR&dpr=2.625&w=1600&s=7ebd4b5a9e045f41b4e0c7c75d298d6c', 
-    'https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg', 
-    'https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop', 
-];
-*/
-
 const img = [
     {
         url: 'http://www.viaggiareonline.it/wp-content/uploads/2014/11/sweden_148857365.jpg',
@@ -18,23 +8,23 @@ const img = [
     {
         url: 'https://static1.evcdn.net/images/reduction/1513757_w-1920_h-1080_q-70_m-crop.jpg',
         title: 'Perù',
-        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quis in voluptate sunt quam, nihil, laudantium ducimus ab vitae debitis adipisci.'
     },
 
     {
         url: 'https://img.itinari.com/pages/images/original/0d3ed180-d22d-48e8-84df-19c4d888b41f-62-crop.jpg?ch=DPR&dpr=2.625&w=1600&s=7ebd4b5a9e045f41b4e0c7c75d298d6c',
         title: 'Chile',
-        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos nesciunt dolore harum nam? Doloremque in qui ipsa mollitia dolorum aut.'
     },
     {
         url: 'https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg',
         title: 'Argentina',
-        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+        description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint repudiandae nobis nam voluptas placeat doloribus fugit.'
     },
     {
         url: 'https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop',
         title: 'Colombia',
-        description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.'
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum corporis suscipit cumque sequi maiores beatae perferendis, quas id? Rem labore aut totam culpa illum.'
     }
 ];
 
@@ -43,9 +33,25 @@ const img = [
 let items = document.querySelector('.items');
 let thumb = document.querySelector('.thumb');
 
-items.innerHTML = `<div class="item-img show"><img class="main-img" src="${img[0].url}"></div>`;
+items.innerHTML = `
+    <div class="item-img show">
+        <img class="main-img" src="${img[0].url}">
+        <div class="item-txt">
+            <h2>${img[0].title}</h2>
+            <p>${img[0].description}</p>
+        </div>
+    </div>
+    `;
 for (let i = 1; i < img.length; i++) {
-    items.innerHTML += `<div class="item-img"><img class="main-img" src="${img[i].url}"></div>`;
+    items.innerHTML += `
+    <div class="item-img">
+        <img class="main-img" src="${img[i].url}">
+        <div class="item-txt">
+            <h2>${img[i].title}</h2>
+            <p>${img[i].description}</p>
+        </div>
+    </div>
+    `;
 }
 
 thumb.innerHTML += `<div class="thumb-img"><img class="sec-img active" src="${img[0].url}"></div>`;

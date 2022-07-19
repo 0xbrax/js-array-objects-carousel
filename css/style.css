@@ -49,6 +49,20 @@ main {
     object-position: center;
 }
 
+.item-txt {
+    position: absolute;
+    width: 700px;
+    top: 10px;
+    right: 15px;
+    text-align: right;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.item-txt p {
+    margin-top: 5px;
+}
+
 .show {
     animation: show-FX 0.5s forwards;
 }
