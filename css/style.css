@@ -137,7 +137,25 @@ main {
     font-size: 25px;
 }
 
+#autoplay-container {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 25px;
+}
+
+#reverse-btn {
+    transform: rotate(180deg);
+}
+
+#autoplay-container i {
+    opacity: 0.5;
+}
+
 #arrow-left:hover,
-#arrow-right:hover {
+#arrow-right:hover,
+#autoplay-container i:hover {
     opacity: 1;
 }

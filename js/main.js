@@ -28,8 +28,6 @@ const img = [
     }
 ];
 
-
-
 let items = document.querySelector('.items');
 let thumb = document.querySelector('.thumb');
 
@@ -62,59 +60,49 @@ for (let i = 1; i < img.length; i++) {
 thumb.innerHTML += `<div id="arrow-left"><i class="fa-solid fa-circle-chevron-left"></i></div>`;
 thumb.innerHTML += `<div id="arrow-right"><i class="fa-solid fa-circle-chevron-right"></i></div>`;
 
-
+items.innerHTML += `
+    <div id="autoplay-container">
+        <i id="reverse-btn" class="fa-solid fa-circle-play"></i>
+        <i id="pause-btn" class="fa-solid fa-circle-pause"></i>
+        <i id="play-btn" class="fa-solid fa-circle-play"></i>
+    </div>
+    `;
+items.innerHTML += `<div id="play-btn"><i class="fa-solid fa-circle-play"></i></div>`;
+items.innerHTML += `<div id="pause-btn"><i class="fa-solid fa-circle-play"></i></div>`;
 
 console.log(`INFO: Possibilità di cliccare sui singoli thumb e scorrimento infinito attraverso le frecce della tastiera o cliccando sui bottoni.`)
+
+
 
 const arrowLeft = document.getElementById('arrow-left');
 const arrowRight = document.getElementById('arrow-right');
 let imgMain = document.querySelectorAll('.item-img');
 let imgSec = document.querySelectorAll('.sec-img');
-
-let imgSelected = [0, 1, 2, 3, 4];
 const imgThumb = document.getElementsByClassName('sec-img');
-let clicked;
+
+///////////////////////////////// CHECK THIS ********
+let imgSelected = [0, 1, 2, 3, 4];
+for (let i = 0; i < imgSelected.length; i++) {
+    imgSelected = i;
+}
 
 for (let n = 0; n < imgThumb.length; n++) {
     imgThumb[n].addEventListener('click', 
     function() {
-        clicked = parseInt([n]);
 
-        for (let i = 0; i < imgSelected.length; i++) {
-            imgSelected = parseInt([i]);
+        for (let x = 0; x < img.length; x++) {
+            imgMain[x].classList.remove('show');
+            imgMain[x].classList.add('no-show');
+            imgSec[x].classList.remove('active');
         }
 
-        imgMain[imgSelected].classList.remove('show');
-        imgSec[imgSelected].classList.remove('active');
-        imgMain[imgSelected].classList.add('no-show');
+        imgMain[n].classList.add('show');
+        imgMain[n].classList.remove('no-show');
+        imgSec[n].classList.remove('active');
 
-        if (clicked == 0) {
-            imgMain[0].classList.add('show');
-            imgSec[0].classList.add('active');
-            imgMain[0].classList.remove('no-show');
+        this.classList.toggle('active')
 
-        } else if (clicked == 1) {
-            imgMain[1].classList.add('show');
-            imgSec[1].classList.add('active');
-            imgMain[1].classList.remove('no-show');
-
-        } else if (clicked == 2) {
-            imgMain[2].classList.add('show');
-            imgSec[2].classList.add('active');
-            imgMain[2].classList.remove('no-show');
-
-        } else if (clicked == 3) {
-            imgMain[3].classList.add('show');
-            imgSec[3].classList.add('active');
-            imgMain[3].classList.remove('no-show');
-
-        } else if (clicked == 4) {
-            imgMain[4].classList.add('show');
-            imgSec[4].classList.add('active');
-            imgMain[4].classList.remove('no-show');
-        }
-
-        imgSelected = clicked;
+        imgSelected = n;
     });
 }
 
@@ -143,11 +131,20 @@ function(event) {
 
 
 
-function keybtnRight() {
-    for (let i = 0; i < imgSelected.length; i++) {
-        imgSelected = parseInt([i]);
-    }
+let autoplay = undefined;
 
+if (autoplay == undefined) {
+    autoplay = setInterval(function() {
+        keybtnRight();
+    
+        autoplay = undefined;
+    }, 3000);
+}
+
+
+
+
+function keybtnRight() {
     imgMain[imgSelected].classList.remove('show');
     imgSec[imgSelected].classList.remove('active');
     imgMain[imgSelected].classList.add('no-show');
@@ -165,10 +162,6 @@ function keybtnRight() {
 }
 
 function keybtnLeft() {
-    for (let i = 0; i < imgSelected.length; i++) {
-        imgSelected = parseInt([i]);
-    }
-
     imgMain[imgSelected].classList.remove('show');
     imgSec[imgSelected].classList.remove('active');
     imgMain[imgSelected].classList.add('no-show');
