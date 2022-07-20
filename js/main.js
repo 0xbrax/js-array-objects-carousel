@@ -75,12 +75,11 @@ const arrowLeft = document.getElementById('arrow-left');
 const arrowRight = document.getElementById('arrow-right');
 let imgMain = document.querySelectorAll('.item-img');
 let imgSec = document.querySelectorAll('.sec-img');
-const imgThumb = document.getElementsByClassName('sec-img');
 
 let imgSelected = 0;
 
-for (let n = 0; n < imgThumb.length; n++) {
-    imgThumb[n].addEventListener('click', 
+for (let n = 0; n < imgSec.length; n++) {
+    imgSec[n].addEventListener('click', 
     function() {
 
         for (let x = 0; x < img.length; x++) {
@@ -91,9 +90,7 @@ for (let n = 0; n < imgThumb.length; n++) {
 
         imgMain[n].classList.add('show');
         imgMain[n].classList.remove('no-show');
-        imgSec[n].classList.remove('active');
-
-        this.classList.toggle('active')
+        imgSec[n].classList.add('active');
 
         imgSelected = n;
     });
